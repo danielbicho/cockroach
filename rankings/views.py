@@ -136,4 +136,4 @@ def game(request, game_name):
     game = Game.objects.filter(game_name=game_name).first()
     context = {'game': game}
 
-    return render(request, 'games.html', context=context)
+    return render(request, 'game.html', context=context)
