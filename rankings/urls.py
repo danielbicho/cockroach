@@ -5,6 +5,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('matches', views.matches, name='matches'),
     path('matches/<int:match_id>', views.matches_details, name='matches-detail'),
-    path('players/<player_nickname>', views.players, name='players'),
-    path('games/<game_name>', views.games, name='games')
+    path('player/<player_nickname>', views.player, name='player'),
+    path('players', views.players, name='players'),
+    path('game/<game_name>', views.game, name='game'),
+    path('games', views.games, name='games')
 ]

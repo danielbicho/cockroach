@@ -1,10 +1,26 @@
 @font-face {
+    font-family: "Disposable Droid";
+    src: url("../fonts/DisposableDroidBB.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "dpcomic";
+    src: url("../fonts/dpcomic.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "yoster";
+    src: url("../fonts/yoster.ttf") format('truetype');
+}
+
+@font-face {
     font-family: "Arcade Classic";
     src: url("../fonts/ARCADECLASSIC.TTF") format('truetype');
 }
 
 .body{
-    font-family: "Arcade Classic";
+    font-family: "Disposable Droid";
+    font-size: 20px;
 }
 
 .sidebar-nav {
@@ -15,6 +31,10 @@
 
 .img-circle {
     border-radius: 60%;
+    width: 80%;
+}
+
+.img-game-logo {
     width: 80%;
 }
 

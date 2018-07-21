@@ -3,22 +3,32 @@
 {% block content %}
 
     <div class="container">
-
-    <div class="row">
-        <div class="col-xs-2">
-            <img class="img img-circle" src="{{ MEDIA_URL }}{{ player.player_photo.url }}">
+    {% for players_row in players %}
+        <div class="row" style="margin-top: 5%">
+        {% for player in players_row %}
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <img class="img img-circle" src="{{ MEDIA_URL }}{{ player.player_photo.url }}">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        {{ player.player_nickname }}
+                    </div>
+                    <!--
+                    <div class="row">
+                        First Name: {{ player.player_first_name }}
+                    </div>
+                    <div class="row">
+                        Last Name:{{ player.player_last_name }}
+                    </div>
+                    -->
+                    <div class="row">
+                        Bio: {{ player.player_bio }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
         </div>
+    {% endfor %}
     </div>
-    <div class="row">
-        <div class="col-xs-2">
-            Nickname: {{ player.player_nickname }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-2">First Name: {{ player.player_first_name }}</div>
-    </div>
-    <div class="row">
-        <div class="col-xs-2">Last Name:{{ player.player_last_name }}</div>
-    </div>
-
 {% endblock %}

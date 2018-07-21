@@ -3,26 +3,27 @@
 {% block content %}
 
     <div class="container">
-        <div class="row">
-            <div class="col-xs">
-                {{ game.game_name }}
+    {% for games_row in games_rows %}
+        <div class="row" style="margin-top: 5%">
+        {% for game in games_row %}
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <img class="img img-game-logo" src="{{ MEDIA_URL }}{{ game.game_logo.url }}">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        Name: <a href="{{ game.game_url }}">{{ game.game_name }}</a>
+                    </div>
+                    <div class="row">
+                        Complexity: {{ game.game_complexity }}
+                    </div>
+                    <div class="row">
+                        Playing Time: {{ game.game_time }}
+                    </div>
+                </div>
             </div>
+        {% endfor %}
         </div>
-        <div class="row">
-            <div class="col-xs">
-                Complexity: {{ game.game_complexity }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs">
-                Game Playing Time: {{ game.game_time }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs">
-                Game URL: <a href="{{ game.game_url }}">{{ game.game_url }}</a>
-            </div>
-        </div>
+    {% endfor %}
     </div>
-
 {% endblock %}

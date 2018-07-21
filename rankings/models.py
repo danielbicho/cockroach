@@ -11,6 +11,7 @@ class Player(models.Model):
     player_first_name = models.CharField(max_length=15, null=False)
     player_last_name = models.CharField(max_length=15, null=False)
     player_photo = models.ImageField()
+    player_bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.player_nickname
@@ -20,7 +21,7 @@ class Game(models.Model):
     """
     Model representing a Game.
     """
-    game_name = models.CharField(max_length=15, primary_key=True)
+    game_name = models.CharField(max_length=30, primary_key=True)
     game_complexity = models.FloatField()
     game_time = models.IntegerField()
     game_url = models.URLField()
