@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  {% block title %}<title>Cockroach Championship</title>{% endblock %}
+  {% block title %}<title>Cockroach League</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,7 +14,30 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<body>
+<body class="body">
+    <div class="banner" style="margin-bottom: 0px; margin-top: 0px">
+        <div class="row text-center">
+            <h1>Cockroach_League</h1>
+        </div>
+        <div class="row text-center">
+            <p>Kill the boy, become the man.</p>
+        </div>
+    </div>
+
+    <div>
+        <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+          <div class="container">
+
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'index' %}">Standings</a></li>
+              <li><a href="{% url 'matches' %}">Matches</a></li>
+                <li><a href="#">Players</a></li>
+              <li><a href="#">Games</a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+
 
 {% block content %}{% endblock %}
 

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Arcade Classic";
+    src: url("../fonts/ARCADECLASSIC.TTF") format('truetype');
+}
+
+.body{
+    font-family: "Arcade Classic";
+}
+
 .sidebar-nav {
     margin-top: 20px;
     padding: 0;
@@ -5,8 +14,13 @@
 }
 
 .img-circle {
-    border-radius: 50%;
+    border-radius: 60%;
     width: 80%;
-    height: auto;
 }
 
+.banner{
+    /* background-image: url("https://media.istockphoto.com/vectors/cockroach-cartoon-seamless-wallpaper-vector-id819560138?k=6&m=819560138&s=612x612&w=0&h=SVn6_b12BfcvKyJQFD-d_yjaqSC5pOcjNA6kqnfFq6Q="); */
+    background-image: url("../img/background_cockroach.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
