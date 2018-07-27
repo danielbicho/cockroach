@@ -50,6 +50,25 @@ def index(request):
     return render(request, 'classification.html', context=context)
 
 
+def game_standings(request, game_name):
+    """
+    View function for standings by game.
+
+    :param request:
+    :param game_name:
+    :return:
+    """
+
+    score_controller = ScoresController()
+    classifications = score_controller.generate_game_standings(game_name)
+
+    context = {
+         'classifications': classifications,
+    }
+
+    return render(request, 'classification_by_game.html', context=context)
+
+
 def matches(request):
     """
     View function for game matches.
@@ -104,8 +123,12 @@ def player(request, player_nickname):
     """
 
     player = Player.objects.filter(player_nickname=player_nickname).first()
+    matches = GameMatch.objects.filter(match_players__player_nickname=player_nickname)
 
-    context = {'player': player}
+    context = {
+        'player': player,
+        'matches': matches
+    }
 
     return render(request, 'player.html', context=context)
 

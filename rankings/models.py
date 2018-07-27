@@ -74,3 +74,4 @@ class TotalClassification(models.Model):
     standing_position = models.IntegerField(primary_key=True)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score_points = models.FloatField()
+    performance_points = models.FloatField()
