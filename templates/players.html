@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        {{ player.player_nickname }}
+                        <a href="{% url 'player' player.player_nickname  %}">{{ player.player_nickname }}</a>
                     </div>
                     <div class="row">
                         Bio: {{ player.player_bio }}

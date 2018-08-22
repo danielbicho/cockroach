@@ -4,7 +4,6 @@ from .controllers import ScoresController, PopulateController
 from .models import GameMatch, GameMatchResult, Player, Game
 
 
-
 def split_list_columns(l, num_column):
     l_rows = []
     row = []
@@ -18,8 +17,7 @@ def split_list_columns(l, num_column):
             row = [e]
             elem_count = 1
 
-    if elem_count != 1:
-        l_rows.append(row)
+    l_rows.append(row)
 
     return l_rows
 
@@ -63,7 +61,7 @@ def game_standings(request, game_name):
     classifications = score_controller.generate_game_standings(game_name)
 
     context = {
-         'classifications': classifications,
+        'classifications': classifications,
     }
 
     return render(request, 'classification_by_game.html', context=context)
@@ -147,6 +145,7 @@ def games(request):
     context = {'games_rows': games_rows}
 
     return render(request, 'games.html', context=context)
+
 
 def game(request, game_name):
     """

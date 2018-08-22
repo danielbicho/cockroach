@@ -55,7 +55,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#matches').DataTable();
+            $('#matches').DataTable({
+                order: [[ 2, 'dsc' ]]
+            });
         });
     </script>
 
