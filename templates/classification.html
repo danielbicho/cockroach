@@ -10,9 +10,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 
     <div class="container">
-        <div class="row">
-            <div style="margin-top: 15px">
+        <div class="row text-xs-center" style="margin-top: 15px; margin-bottom: 15px">
             <h1>General Standings</h1>
+        </div>
+        <div class="row">
             <table id="classification_table" class="table order-column" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -28,10 +29,10 @@
                     <td></td>
                     <td>
                         <div>
-                            <div class="col-xs-2 ">
+                            <div class="col-md-2">
                                 <img class="img img-circle" src="{{ MEDIA_URL }}{{ entry.player.player_photo.url }}">
                             </div>
-                            <div class="col-xs-2">
+                            <div class="col-md-2">
                                 <a href="{% url 'player' entry.player  %}">{{ entry.player }}</a>
                             </div>
                         </div>

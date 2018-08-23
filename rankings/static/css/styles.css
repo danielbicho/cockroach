@@ -44,3 +44,9 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+@media (max-width: 767px) {
+  .text-xs-center {
+    text-align: center;
+  }
+}
