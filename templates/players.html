@@ -6,16 +6,18 @@
     {% for players_row in players %}
         <div class="row" style="margin-bottom: 25px">
         {% for player in players_row %}
-            <div class="col-md-6">
-                <div class="col-md-6">
-                    <img class="img img-circle" src="{{ MEDIA_URL }}{{ player.player_photo.url }}">
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <a href="{% url 'player' player.player_nickname  %}">{{ player.player_nickname }}</a>
+            <div class="col-md-6 col-xs-12">
+                <div class="row" style="margin-bottom: 25px">
+                    <div class="col-md-6 col-xs-6">
+                        <img class="img img-circle" src="{{ MEDIA_URL }}{{ player.player_photo.url }}">
                     </div>
-                    <div class="row">
-                        Bio: {{ player.player_bio }}
+                    <div class="col-md-6 col-xs-6">
+                        <div class="row">
+                            <a href="{% url 'player' player.player_nickname  %}">{{ player.player_nickname }}</a>
+                        </div>
+                        <div class="row">
+                            Bio: {{ player.player_bio }}
+                        </div>
                     </div>
                 </div>
             </div>

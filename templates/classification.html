@@ -65,7 +65,8 @@ $(document).ready(function() {
             targets: 0
         } ],
         order: [[ 3, 'dsc' ]],
-        fixedColumns: true
+        fixedColumns: true,
+        bLengthChange: false
     } );
 
     table.on( 'order.dt search.dt', function () {

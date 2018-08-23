@@ -51,7 +51,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#classification_table').DataTable();
+            $('#classification_table').DataTable({
+                bLengthChange: false
+            });
         });
     </script>
 

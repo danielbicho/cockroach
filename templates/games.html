@@ -6,22 +6,24 @@
     {% for games_row in games_rows %}
         <div class="row" style="margin-bottom: 25px">
         {% for game in games_row %}
-            <div class="col-md-6">
-                <div class="col-md-6">
-                    <img class="img img-game-logo" src="{{ MEDIA_URL }}{{ game.game_logo.url }}">
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        Name: <a href="{{ game.game_url }}">{{ game.game_name }}</a>
+            <div class="col-md-6 col-xs-12">
+                <div class="row" style="margin-bottom: 25px">
+                    <div class="col-md-6 col-xs-6">
+                        <img class="img img-game-logo" src="{{ MEDIA_URL }}{{ game.game_logo.url }}">
                     </div>
-                    <div class="row">
-                        Complexity: {{ game.game_complexity }}
-                    </div>
-                    <div class="row">
-                        Playing Time: {{ game.game_time }}
-                    </div>
-                    <div class="row">
-                        <a href="{% url 'game_standings' game.game_name %}">Standing By Game</a>
+                    <div class="col-md-6 col-xs-6">
+                        <div class="row">
+                            Name: <a href="{{ game.game_url }}">{{ game.game_name }}</a>
+                        </div>
+                        <div class="row">
+                            Complexity: {{ game.game_complexity }}
+                        </div>
+                        <div class="row">
+                            Playing Time: {{ game.game_time }}
+                        </div>
+                        <div class="row">
+                            <a href="{% url 'game_standings' game.game_name %}">Standing By Game</a>
+                        </div>
                     </div>
                 </div>
             </div>
