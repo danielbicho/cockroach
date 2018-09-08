@@ -33,6 +33,14 @@ class Game(models.Model):
         return self.game_name
 
 
+class Competitions(models.Model):
+    """
+    Model representing a Competition.
+    """
+
+    competition_id = models.IntegerField(primary_key=True)
+    competition_name = models.CharField(max_length=50, null=False)
+
 class GameMatch(models.Model):
     """
     Model representing a Game Match.

@@ -110,7 +110,7 @@ class ScoresController:
             game = match.match_game
             table_points = TablePoints.objects.filter(table_standing=result.result_standing).first()
             if game and table_points:
-                result.result_points = table_points.table_score * game.game_complexity
+                result.result_points = round(table_points.table_score * game.game_complexity, 2)
                 result.save()
 
     def generate_total_classification(self):
