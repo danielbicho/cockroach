@@ -14,6 +14,7 @@
                 <th>Player</th>
                 <th>Score Points</th>
                 <th>Game</th>
+                <th>Competition</th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                 <td>{{ result.result_player }}</td>
                 <td>{{ result.result_points }}</td>
                 <td>{{ game }}</td>
+                <td>{{ result.result_match_id.competition_id.competition_name }}</td>
                 </tr>
             {% endfor %}
             </tbody>

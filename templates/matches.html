@@ -11,6 +11,7 @@
             <thead>
             <tr>
                 <th>Match ID</th>
+                <th>Competition</th>
                 <th>Game</th>
                 <th>Date</th>
             </tr>
@@ -19,6 +20,7 @@
             {% for match in matches %}
             <tr>
                 <td><a href="{% url 'matches-detail' match.match_id %}">{{ match.match_id }}</a></td>
+                <td>{{ match.competition_id.competition_name }}</td>
                 <td><a href="{% url 'game' match.match_game %}">{{ match.match_game }}</a></td>
                 <td>{{ match.match_date }}</td>
             </tr>

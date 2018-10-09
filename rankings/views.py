@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .controllers import ScoresController, PopulateController
-from .models import GameMatch, GameMatchResult, Player, Game
+from .models import GameMatch, GameMatchResult, Player, Game, Competition
 
 
 def split_list_columns(l, num_column):
@@ -30,7 +30,7 @@ def populate(request):
     populate_controller.populate_games()
 
 
-def index(request):
+def index(request, competition_id=2):
     """
     View function for home page of site.
     """
@@ -38,17 +38,19 @@ def index(request):
     score_controller = ScoresController()
     score_controller.generate_score_points()
 
-    classifications = score_controller.generate_total_classification()
+    classifications = score_controller.generate_total_classification(competition_id)
+    competition_name = Competition.objects.filter(competition_id=competition_id).first().competition_name
 
     # Render the HTML template index.html with the data in the context variable
     context = {
         'classifications': classifications,
+        'competition_name': competition_name,
     }
 
     return render(request, 'classification.html', context=context)
 
-
-def game_standings(request, game_name):
+# TODO replace all competition_id defaults by CURRENT_COMPETIION GLOBAL VARIABLE
+def game_standings(request, game_name, competition_id=1):
     """
     View function for standings by game.
 
@@ -58,10 +60,12 @@ def game_standings(request, game_name):
     """
 
     score_controller = ScoresController()
-    classifications = score_controller.generate_game_standings(game_name)
+    classifications = score_controller.generate_game_standings(game_name, competition_id)
 
     context = {
         'classifications': classifications,
+        'game_name': game_name,
+        'competition_id': competition_id
     }
 
     return render(request, 'classification_by_game.html', context=context)
@@ -159,3 +163,13 @@ def game(request, game_name):
     context = {'game': game}
 
     return render(request, 'game.html', context=context)
+
+def competitions(request):
+    """
+
+    View function for display Game detail.
+    :param request:
+    :return:
+    """
+
+    return render(request, 'competitions.html')

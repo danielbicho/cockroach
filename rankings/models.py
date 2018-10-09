@@ -33,7 +33,7 @@ class Game(models.Model):
         return self.game_name
 
 
-class Competitions(models.Model):
+class Competition(models.Model):
     """
     Model representing a Competition.
     """
@@ -50,6 +50,7 @@ class GameMatch(models.Model):
     match_date = models.DateField('Match Date')
     match_game = models.ForeignKey(Game, on_delete=models.CASCADE)
     match_players = models.ManyToManyField(Player)
+    competition_id = models.ForeignKey(Competition, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.match_id)
@@ -83,3 +84,4 @@ class TotalClassification(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score_points = models.FloatField()
     performance_points = models.FloatField()
+    competition_id = models.ForeignKey(Competition, on_delete=models.CASCADE)

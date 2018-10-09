@@ -2,43 +2,52 @@
 <html lang="en">
 <head>
 
-  {% block title %}<title>Cockroach League</title>{% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:image" content="https://media1.giphy.com/media/I2otX1knPW0Fi/giphy.gif"/>
+    {% block title %}<title>Cockroach League</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="https://media1.giphy.com/media/I2otX1knPW0Fi/giphy.gif"/>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <!-- Add additional CSS in static file -->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 
 <body class="body">
-    <div class="banner" style="margin-bottom: 0px; margin-top: 0px">
-        <div class="row text-center">
-            <h1 style="font-size: 48px">Cockroach League</h1>
-        </div>
-        <div class="row text-center">
-            <p>Kill the cockroach, become the man.</p>
-        </div>
+<div class="banner" style="margin-bottom: 0px; margin-top: 0px">
+    <div class="row text-center">
+        <h1 style="font-size: 48px">Cockroach League</h1>
     </div>
+    <div class="row text-center">
+        <p>Kill the cockroach, become the man.</p>
+    </div>
+</div>
 
-    <div>
-        <nav class="navbar navbar-default" style="margin-bottom: 15px">
-          <div class="container text-center">
+<div>
+    <nav class="navbar navbar-default" style="margin-bottom: 15px">
+        <div class="container text-center">
 
             <ul class="nav navbar-nav">
-              <li><a href="{% url 'index' %}">Standings</a></li>
-              <li><a href="{% url 'matches' %}">Matches</a></li>
+                <li class="dropdown">
+                    <a class="dropbtn" href="{% url 'index' competition_id=1 %}">Standings</a>
+                       <div id="myDropdown" class="dropdown-content">
+                        <a href="{% url 'index' competition_id=1 %}">Season 1</a>
+                        <a href="{% url 'index' competition_id=2 %}">Season 2</a>
+                      </div>
+                </li>
+
+                <li><a href="{% url 'matches' %}">Matches</a></li>
                 <li><a href="{% url 'players' %}">Players</a></li>
-              <li><a href="{% url 'games' %}">Games</a></li>
+                <li><a href="{% url 'games' %}">Games</a></li>
+                <li><a href="{% url 'competitions' %}">Competitions</a></li>
             </ul>
-          </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
 
 
 {% block content %}{% endblock %}

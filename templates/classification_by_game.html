@@ -10,6 +10,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 
     <div class="container">
+        <div class="row" style="margin-top: 15px">
+            <div class="col-xs-2"><a href="{% url 'game_standings' game_name=game_name competition_id=1 %}">Season 1</a></div>
+            <div class="col-xs-2"><a href="{% url 'game_standings' game_name=game_name competition_id=2 %}">Season 2</a></div>
+        </div>
+        <div class="row">
         <div style="margin-top: 15px">
         <table id="classification_table" class="table" cellspacing="0" width="100%">
             <thead>
@@ -40,6 +45,7 @@
             {% endfor %}
             </tbody>
         </table>
+        </div>
         </div>
     </div>
 
