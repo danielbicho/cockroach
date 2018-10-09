@@ -144,7 +144,7 @@ def games(request):
     """
 
     games = Game.objects.filter()
-    games_rows = split_list_columns(games, 2)
+    games_rows = split_list_columns(games[::-1], 2)
 
     context = {'games_rows': games_rows}
 
