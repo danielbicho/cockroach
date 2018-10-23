@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 from .controllers import ScoresController, PopulateController
-from .models import GameMatch, GameMatchResult, Player, Game, Competition
+from .models import GameMatch, GameMatchResult, Player, Game, Competition, PlayerGameElo
+from .ops.generate_elo_ratings import game_elo_calculator
 
 
 def split_list_columns(l, num_column):
@@ -30,16 +31,28 @@ def populate(request):
     populate_controller.populate_games()
 
 
+# TODO refactor this so it does not always recalculate everything, will be problematic with a bigger set of data
 def index(request, competition_id=2):
     """
     View function for home page of site.
     """
+
     # call controller
     score_controller = ScoresController()
     score_controller.generate_score_points()
 
     classifications = score_controller.generate_total_classification(competition_id)
     competition_name = Competition.objects.filter(competition_id=competition_id).first().competition_name
+
+    # generate elo
+    # TODO Always rebuilding the elo, change this to only update when a game_match is inserted (need a diferent interface from the django admin one)
+
+    for elo in PlayerGameElo.objects.all():
+        elo.score = 1500
+        elo.save()
+
+    for game_match in GameMatch.objects.filter().all():
+        game_elo_calculator(game_match)
 
     # Render the HTML template index.html with the data in the context variable
     context = {
@@ -48,6 +61,7 @@ def index(request, competition_id=2):
     }
 
     return render(request, 'classification.html', context=context)
+
 
 # TODO replace all competition_id defaults by CURRENT_COMPETIION GLOBAL VARIABLE
 def game_standings(request, game_name, competition_id=1):
@@ -61,9 +75,16 @@ def game_standings(request, game_name, competition_id=1):
 
     score_controller = ScoresController()
     classifications = score_controller.generate_game_standings(game_name, competition_id)
+    classifications_elo_tuple = []
+
+    for item in classifications:
+        player_game_elo = PlayerGameElo.objects.filter(game=Game.objects.filter(game_name=game_name).filter().first(),
+                                                       player=item.player).first()
+        classifications_elo_tuple.append((item, player_game_elo))
 
     context = {
-        'classifications': classifications,
+        # 'classifications': classifications,
+        'classifications_elo_tuple': classifications_elo_tuple,
         'game_name': game_name,
         'competition_id': competition_id
     }
@@ -119,7 +140,7 @@ def players(request):
 def player(request, player_nickname):
     """
     View function for display a Player detail.
-    :param request:
+    :param request:\
     :param player_id:
     :return:
     """
@@ -163,6 +184,7 @@ def game(request, game_name):
     context = {'game': game}
 
     return render(request, 'game.html', context=context)
+
 
 def competitions(request):
     """

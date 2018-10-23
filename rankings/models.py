@@ -41,6 +41,27 @@ class Competition(models.Model):
     competition_id = models.IntegerField(primary_key=True)
     competition_name = models.CharField(max_length=50, null=False)
 
+    def __str__(self):
+        return self.competition_name
+
+
+class PlayerGameElo(models.Model):
+    """
+    Model representing a Player ELO at a specific game.
+    """
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    score = models.IntegerField(null=False, default=1500)
+
+
+class PlayerGeneralElo(models.Model):
+    """
+    Model representing a Player General ELO.
+    """
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    score = models.IntegerField(null=False, default=1500)
+
+
 class GameMatch(models.Model):
     """
     Model representing a Game Match.
