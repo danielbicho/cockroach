@@ -21,24 +21,26 @@
                     <th style="width: 20%">Player</th>
                     <th style="width: 20%">Score Points</th>
                     <th style="width: 20%">Performance</th>
+                    <th style="width: 20%">General Elo</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for entry in classifications %}
+                {% for entry, elo in classifications %}
                 <tr>
                     <td></td>
                     <td>
                         <div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <img class="img img-circle" src="{{ MEDIA_URL }}{{ entry.player.player_photo.url }}">
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <a href="{% url 'player' entry.player  %}">{{ entry.player }}</a>
                             </div>
                         </div>
                     </td>
                     <td>{{ entry.score_points }}</td>
                     <td>{{ entry.performance_points }}</td>
+                    <td>{{ elo.score }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

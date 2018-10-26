@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 from .controllers import ScoresController, PopulateController
-from .models import GameMatch, GameMatchResult, Player, Game, Competition, PlayerGameElo
-from .ops.generate_elo_ratings import game_elo_calculator
+from .models import GameMatch, GameMatchResult, Player, Game, Competition, PlayerGameElo, PlayerGeneralElo
+from .ops.generate_elo_ratings import game_elo_calculator, general_elo_calculator
 
 
 def split_list_columns(l, num_column):
@@ -51,12 +51,23 @@ def index(request, competition_id=2):
         elo.score = 1500
         elo.save()
 
+    for elo in PlayerGeneralElo.objects.all():
+        elo.score = 1500
+        elo.save()
+
     for game_match in GameMatch.objects.filter().all():
         game_elo_calculator(game_match)
+        general_elo_calculator(game_match)
+
+    classifications_elo_tuple = []
+
+    for item in classifications:
+        player_general_elo = PlayerGeneralElo.objects.filter(player=item.player).first()
+        classifications_elo_tuple.append((item, player_general_elo))
 
     # Render the HTML template index.html with the data in the context variable
     context = {
-        'classifications': classifications,
+        'classifications': classifications_elo_tuple,
         'competition_name': competition_name,
     }
 
