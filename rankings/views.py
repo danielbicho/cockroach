@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 from .controllers import ScoresController, PopulateController
 from .models import GameMatch, GameMatchResult, Player, Game, Competition, PlayerGameElo, PlayerGeneralElo
 from .ops.generate_elo_ratings import game_elo_calculator, general_elo_calculator
+from .forms import AddMatchResult
 
 
 def split_list_columns(l, num_column):
@@ -206,3 +208,22 @@ def competitions(request):
     """
 
     return render(request, 'competitions.html')
+
+
+def add_match_result(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    if request.method == 'POST':
+        form = AddMatchResult(request.POST)
+
+        if form.is_valid():
+            return HttpResponseRedirect('/thanks/')
+
+    else:
+        form = AddMatchResult()
+
+    return render(request, 'add_match_result.html', {'form': form})

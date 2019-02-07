@@ -2,4 +2,4 @@ from django import forms
 
 
 class AddMatchResult(forms.Form):
-    pass
+    game = forms.CharField(label='Game Name', max_length=160)
