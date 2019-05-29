@@ -12,5 +12,6 @@ urlpatterns = [
     path('games', views.games, name='games'),
     path('<game_name>/<int:competition_id>', views.game_standings, name='game_standings'),
     path('competitions', views.competitions, name='competitions'),
-    path('add-match', views.add_match_result, name='add-match')
+    path('add-match', views.add_match_result, name='add-match'),
+    path('podcasts', views.podcasts, name='podcasts')
 ]

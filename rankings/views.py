@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from .controllers import ScoresController, PopulateController
+from .forms import AddMatchResult
 from .models import GameMatch, GameMatchResult, Player, Game, Competition, PlayerGameElo, PlayerGeneralElo
 from .ops.generate_elo_ratings import game_elo_calculator, general_elo_calculator
-from .forms import AddMatchResult
 
 
 def split_list_columns(l, num_column):
@@ -227,3 +227,7 @@ def add_match_result(request):
         form = AddMatchResult()
 
     return render(request, 'add_match_result.html', {'form': form})
+
+
+def podcasts(requests):
+    return render(requests, 'podcasts.html')
